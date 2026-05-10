@@ -5669,9 +5669,25 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./service-worker.js')
-    .then(() => console.log('Service Worker registrado'));
+
+  window.addEventListener('load', async () => {
+
+    try {
+
+      const reg = await navigator.serviceWorker.register('./service-worker.js');
+
+      console.log('SW registrado:', reg);
+
+    } catch (err) {
+
+      console.error('SW erro:', err);
+
+    }
+
+  });
+
 }
+
 </script>
 </body>
 </html>
